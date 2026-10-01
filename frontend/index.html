@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>霸王茶姬 - 销量数据分析平台</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8D%B5%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/echarts.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <h1>霸王茶姬 销量数据分析平台</h1>
+            <span class="header-badge">全年数据</span>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="filter-bar">
+            <div class="filter-row">
+                <label>城市
+                    <select id="cityFilter">
+                        <option value="">全部</option>
+                    </select>
+                </label>
+                <label>产品
+                    <select id="productFilter">
+                        <option value="">全部</option>
+                    </select>
+                </label>
+                <label>类别
+                    <select id="categoryFilter">
+                        <option value="">全部</option>
+                    </select>
+                </label>
+                <label>季节
+                    <select id="seasonFilter">
+                        <option value="">全部</option>
+                    </select>
+                </label>
+                <label>天气
+                    <select id="weatherFilter">
+                        <option value="">全部</option>
+                    </select>
+                </label>
+                <label>开始日期
+                    <input type="date" id="startDateFilter" min="2025-01-01" max="2025-12-31">
+                </label>
+                <label>结束日期
+                    <input type="date" id="endDateFilter" min="2025-01-01" max="2025-12-31">
+                </label>
+                <button id="applyFilter" class="btn">筛选</button>
+                <a id="exportCsv" class="btn btn-secondary" href="/api/export">导出 CSV</a>
+            </div>
+        </section>
+
+        <!-- KPI 卡片 -->
+        <section class="kpi-row">
+            <div class="kpi-card" id="kpi-qty">
+                <div class="kpi-value">--</div>
+                <div class="kpi-label">总销量 (杯)</div>
+            </div>
+            <div class="kpi-card" id="kpi-rev">
+                <div class="kpi-value">--</div>
+                <div class="kpi-label">总营收 (元)</div>
+            </div>
+            <div class="kpi-card" id="kpi-records">
+                <div class="kpi-value">--</div>
+                <div class="kpi-label">记录条数</div>
+            </div>
+        </section>
+
+        <!-- 核心数据洞察 -->
+        <section class="insights-section">
+            <h2 class="section-title">核心数据洞察</h2>
+            <div class="insights-grid" id="insightsGrid">
+                <div class="insights-loading">正在分析数据…</div>
+            </div>
+        </section>
+
+        <!-- 图表区域 -->
+        <section class="chart-grid">
+            <div class="chart-card span-full">
+                <h3>月度销量与营收趋势</h3>
+                <div id="chart-monthly" class="chart-box"></div>
+            </div>
+            <div class="chart-card">
+                <h3>产品销量排名</h3>
+                <div id="chart-product" class="chart-box"></div>
+            </div>
+            <div class="chart-card">
+                <h3>产品类别占比</h3>
+                <div id="chart-category" class="chart-box"></div>
+            </div>
+            <div class="chart-card">
+                <h3>城市销量排名</h3>
+                <div id="chart-city" class="chart-box"></div>
+            </div>
+            <div class="chart-card">
+                <h3>季节销量对比</h3>
+                <div id="chart-season" class="chart-box"></div>
+            </div>
+            <div class="chart-card">
+                <h3>天气对销量影响</h3>
+                <div id="chart-weather" class="chart-box"></div>
+            </div>
+            <div class="chart-card">
+                <h3>营销活动效果</h3>
+                <div id="chart-campaign" class="chart-box"></div>
+            </div>
+            <div class="chart-card span-full">
+                <h3>城市 x 产品 热力图</h3>
+                <div id="chart-heatmap" class="chart-box" style="height: 500px;"></div>
+            </div>
+            <div class="chart-card">
+                <h3>节假日 vs 非节假日</h3>
+                <div id="chart-holiday" class="chart-box"></div>
+            </div>
+            <div class="chart-card">
+                <h3>折扣对销量影响</h3>
+                <div id="chart-discount" class="chart-box"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>霸王茶姬销量数据分析平台 数据仅供参考</p>
+    </footer>
+
+    <script src="/js/chart.js"></script>
+</body>
+</html>
