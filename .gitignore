@@ -1,0 +1,13 @@
+# 虚拟环境
+.venv/
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+
+# 派生数据库文件（启动时由 CSV 自动重建）
+*.db
+*.db-journal
+
+# 测试/工具缓存
+.pytest_cache/
